@@ -1,17 +1,24 @@
 
-let nombre = "Juan";
-let apellido = "Pérez";
-let edad = 30;
-let peso = 75;
-let estatura = 1.75;
+document.getElementById('form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Evita que la página se recargue
 
-// Cálculo del IMC
-let imc = peso / (estatura * estatura);
+    // Obtener valores de los inputs
+    const nombre = document.getElementById('nombre').value;
+    const apellido = document.getElementById('apellido').value;
+    const edad = document.getElementById('edad').value;
+    const peso = parseFloat(document.getElementById('peso').value);
+    const estatura = parseFloat(document.getElementById('estatura').value);
 
-// Impresión de los datos
-console.log("Nombre: " + nombre);
-console.log("Apellido: " + apellido);
-console.log("Edad: " + edad + " años");
-console.log("Peso: " + peso + " kg");
-console.log("Estatura: " + estatura + " m");
-console.log("Índice de Masa Corporal (IMC): " + imc);
+    // Calcular el IMC
+    const imc = (peso / (estatura * estatura)).toFixed(2);
+
+    // Mostrar el resultado
+    const resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.innerHTML = `
+        <p>Nombre: ${nombre} ${apellido}</p>
+        <p>Edad: ${edad} años</p>
+        <p>Peso: ${peso} kg</p>
+        <p>Estatura: ${estatura} m</p>
+        <p><strong>Índice de Masa Corporal (IMC): ${imc}</strong></p>
+    `;
+});
